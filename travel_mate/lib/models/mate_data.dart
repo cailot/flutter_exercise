@@ -1,5 +1,5 @@
 import 'dart:collection';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'mate_item.dart';
 
 class MateData extends ChangeNotifier {
@@ -30,5 +30,9 @@ class MateData extends ChangeNotifier {
       total += item.price;
     }
     return total;
+  }
+
+  int get itemCount {
+    return _items.length;
   }
 }

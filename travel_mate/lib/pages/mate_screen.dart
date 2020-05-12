@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:travelmate/components/mate_list.dart';
+import 'package:travelmate/models/mate_data.dart';
+import 'package:provider/provider.dart';
 
 class MateScreen extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +25,8 @@ class MateScreen extends StatelessWidget {
                   Column(
                     children: <Widget>[
                       Text('Exchange Rate '),
-                      Text('Total'),
+                      Text(
+                          'Total ${Provider.of<MateData>(context).totalAmount()}'),
                     ],
                   ),
                 ],
