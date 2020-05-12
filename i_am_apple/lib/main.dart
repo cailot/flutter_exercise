@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('I am Apple'),
+        ),
+        backgroundColor: Colors.lightGreenAccent,
+        body: Center(
+          child: Image(
+            image: AssetImage('images/body.png'),
+          ),
+        ),
+      ),
+    ),
+  );
+}
