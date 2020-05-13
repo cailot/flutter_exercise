@@ -9,15 +9,18 @@ class MateList extends StatelessWidget {
       builder: (context, data, child) {
         return ListView.builder(
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(
-                data.items[index].name,
-                style: TextStyle(
-                  fontFamily: 'GloriaHallelujah',
-                  fontSize: 25,
+            return Card(
+              margin: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+              child: ListTile(
+                leading: Text(
+                  data.items[index].name,
+                  style: TextStyle(
+                    fontFamily: 'GloriaHallelujah',
+                    fontSize: 25,
+                  ),
                 ),
+                trailing: Text(data.items[index].price.toString()),
               ),
-              trailing: Text(data.items[index].price.toString()),
             );
           },
           itemCount: data.itemCount,
