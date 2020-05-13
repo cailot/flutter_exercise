@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:travelmate/components/mate_list.dart';
 import 'package:travelmate/models/mate_data.dart';
 import 'package:provider/provider.dart';
+import 'package:travelmate/models/mate_item.dart';
+import 'package:travelmate/utils/mate_constants.dart';
 
-class MateAdd extends StatelessWidget {
+class MateAdd extends StatefulWidget {
   static final String id = 'add';
+  @override
+  _MateAddState createState() => _MateAddState();
+}
+
+class _MateAddState extends State<MateAdd> {
+  String itemName;
+  double itemPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -18,32 +27,50 @@ class MateAdd extends StatelessWidget {
             Expanded(
               child: Image.asset('images/add.png'),
             ),
-            SizedBox(
-              height: 50,
-            ),
-            Card(
-              margin: EdgeInsets.all(50),
-//                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-
-              child: ListTile(
-                leading: Text(
-                  'Lunch',
-                  style: TextStyle(
-                    color: Colors.teal.shade900,
-                    fontSize: 20.0,
-                  ),
+            Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Text(
+                      'Item',
+                    ),
+                    Flexible(
+                      child: TextField(
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                        decoration: kTextFieldInputDecoration,
+                        onChanged: (value) {
+                          itemName = value;
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                trailing: Text(
-                  ' 16',
-                  style: TextStyle(
-                    color: Colors.teal.shade900,
-                    fontSize: 20.0,
-                  ),
+                Row(
+                  children: <Widget>[
+                    Text(
+                      'Price',
+                    ),
+                    Flexible(
+                      child: TextField(
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                        decoration: kTextFieldInputDecoration,
+                        onChanged: (value) {
+                          itemPrice = double.parse(value);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+              ],
             ),
             GestureDetector(
               onTap: () {
+                Provider.of<MateData>(context, listen: false)
+                    .addItem(MateItem(name: itemName, price: itemPrice));
                 Navigator.pop(context);
               },
               child: Container(
