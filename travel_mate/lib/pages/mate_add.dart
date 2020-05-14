@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:travelmate/components/mate_list.dart';
 import 'package:travelmate/models/mate_data.dart';
 import 'package:provider/provider.dart';
 import 'package:travelmate/models/mate_item.dart';
@@ -19,7 +18,7 @@ class _MateAddState extends State<MateAdd> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Mate Item'),
+        title: Text('Add Item'),
       ),
       body: SafeArea(
         child: Column(
@@ -29,41 +28,75 @@ class _MateAddState extends State<MateAdd> {
             ),
             Column(
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Text(
-                      'Item',
-                    ),
-                    Flexible(
-                      child: TextField(
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                        decoration: kTextFieldInputDecoration,
-                        onChanged: (value) {
-                          itemName = value;
-                        },
+                Padding(
+                  padding: EdgeInsets.all(30),
+                  child: Row(
+                    children: <Widget>[
+                      CircleAvatar(
+                        child: Image.network(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXeYAp65f4-p2qs_slDpd4q6XV8rQqzGQySEF97ZnBPsjDePOP&usqp=CAU'),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Item',
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: TextField(
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                          decoration: kTextFieldInputDecoration,
+                          onChanged: (value) {
+                            itemName = value;
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      'Price',
-                    ),
-                    Flexible(
-                      child: TextField(
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                        decoration: kTextFieldInputDecoration,
-                        onChanged: (value) {
-                          itemPrice = double.parse(value);
-                        },
+                Padding(
+                  padding: EdgeInsets.all(30),
+                  child: Row(
+                    children: <Widget>[
+                      CircleAvatar(
+                        child: Image.network(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtQU_pc6OrHVirqaWv8ONZdXKMNn3Gv5-ClFINuxdEmwtaKKOQ&usqp=CAU'),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Price',
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Flexible(
+                        child: TextField(
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                          decoration: kTextFieldInputDecoration.copyWith(
+                            hintText: 'Your Price',
+                          ),
+                          onChanged: (value) {
+                            itemPrice = double.parse(value);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -85,8 +118,8 @@ class _MateAddState extends State<MateAdd> {
                     ),
                   ),
                 ),
-                margin:
-                    EdgeInsets.only(top: 10, bottom: 50, left: 100, right: 100),
+                margin: EdgeInsets.only(
+                    top: 80, bottom: 100, left: 100, right: 100),
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.blue,
@@ -102,3 +135,5 @@ class _MateAddState extends State<MateAdd> {
     );
   }
 }
+
+// itemPrice = double.parse(value);

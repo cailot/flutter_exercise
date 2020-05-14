@@ -12,19 +12,21 @@ class MateList extends StatelessWidget {
           itemBuilder: (context, index) {
             var item = data.items[index];
             return Card(
+              shadowColor: Colors.blue,
+              elevation: 3,
               margin: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
               child: ListTile(
-                leading: Text(
+                leading: Icon(Icons.fiber_manual_record),
+                title: Text(
                   item.name,
                   style: TextStyle(
                     fontFamily: 'GloriaHallelujah',
-                    fontSize: 25,
+                    fontSize: 20,
                   ),
                 ),
-                trailing: Text(item.price.toString()),
+                trailing: Text('\$ ${item.price.toString()}'),
                 onLongPress: () {
                   confirmOK(context, item);
-//                  data.removeItem(item)
                 },
               ),
             );
@@ -46,14 +48,12 @@ class MateList extends StatelessWidget {
             FlatButton(
               onPressed: () {
                 Provider.of<MateData>(context, listen: false).removeItem(item);
-                print('OK');
                 Navigator.pop(context);
               },
               child: Text('OK'),
             ),
             FlatButton(
               onPressed: () {
-                print('Cancel');
                 Navigator.pop(context);
               },
               child: Text('Canel'),

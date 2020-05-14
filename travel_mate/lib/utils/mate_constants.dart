@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 
+const kTextExchangeDecoration = TextStyle(
+  color: Colors.blueAccent,
+  fontSize: 15,
+  fontStyle: FontStyle.italic,
+  fontWeight: FontWeight.bold,
+);
+
+const kTextTotalDecordation = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 35,
+  fontFamily: 'ShyFonts',
+  color: Colors.orangeAccent,
+);
+
 const kTextFieldInputDecoration = InputDecoration(
   filled: true,
-  fillColor: Colors.white,
-  icon: Icon(
-    Icons.location_city,
-    color: Colors.white,
-  ),
+//  fillColor: Colors.blue,
   hintText: 'Item you spent',
   hintStyle: TextStyle(
     color: Colors.grey,
@@ -15,6 +25,5 @@ const kTextFieldInputDecoration = InputDecoration(
     borderRadius: BorderRadius.all(
       Radius.circular(10.0),
     ),
-    borderSide: BorderSide.none,
   ),
 );

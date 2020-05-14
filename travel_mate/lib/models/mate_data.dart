@@ -6,8 +6,7 @@ class MateData extends ChangeNotifier {
   List<MateItem> _items = [
     MateItem(name: 'Lunch', price: 10),
     MateItem(name: 'Coffee', price: 5),
-    MateItem(name: 'Souvenir1', price: 17),
-    MateItem(name: 'Souvenir2', price: 27),
+    MateItem(name: '기념품', price: 17),
   ];
 
   UnmodifiableListView<MateItem> get items {
@@ -29,6 +28,7 @@ class MateData extends ChangeNotifier {
     for (MateItem item in _items) {
       total += item.price;
     }
+    total = double.parse(total.toStringAsFixed(2));
     return total;
   }
 
