@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/components/recipe_card.dart';
 
-class RecipeMain extends StatefulWidget {
-  @override
-  _RecipeMainState createState() => _RecipeMainState();
-}
-
-class _RecipeMainState extends State<RecipeMain> {
+class RecipeMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
