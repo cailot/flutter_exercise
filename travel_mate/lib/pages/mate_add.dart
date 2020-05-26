@@ -32,10 +32,11 @@ class _MateAddState extends State<MateAdd> {
                   padding: EdgeInsets.all(30),
                   child: Row(
                     children: <Widget>[
-                      CircleAvatar(
-                        child: Image.network(
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXeYAp65f4-p2qs_slDpd4q6XV8rQqzGQySEF97ZnBPsjDePOP&usqp=CAU'),
-                      ),
+//                      CircleAvatar(
+//                        child: Image.network(
+//                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXeYAp65f4-p2qs_slDpd4q6XV8rQqzGQySEF97ZnBPsjDePOP&usqp=CAU'),
+//                      ),
+                      Icon(Icons.toc),
                       SizedBox(
                         width: 10,
                       ),
@@ -66,10 +67,11 @@ class _MateAddState extends State<MateAdd> {
                   padding: EdgeInsets.all(30),
                   child: Row(
                     children: <Widget>[
-                      CircleAvatar(
-                        child: Image.network(
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtQU_pc6OrHVirqaWv8ONZdXKMNn3Gv5-ClFINuxdEmwtaKKOQ&usqp=CAU'),
-                      ),
+//                      CircleAvatar(
+//                        child: Image.network(
+//                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtQU_pc6OrHVirqaWv8ONZdXKMNn3Gv5-ClFINuxdEmwtaKKOQ&usqp=CAU'),
+//                      ),
+                      Icon(Icons.attach_money),
                       SizedBox(
                         width: 10,
                       ),
@@ -102,8 +104,11 @@ class _MateAddState extends State<MateAdd> {
             ),
             GestureDetector(
               onTap: () {
-                Provider.of<MateData>(context, listen: false)
-                    .addItem(MateItem(name: itemName, price: itemPrice));
+                print('itemName is $itemName and itemPrice is $itemPrice');
+                if (itemName != null && itemPrice != null) {
+                  Provider.of<MateData>(context, listen: false)
+                      .addItem(MateItem(name: itemName, price: itemPrice));
+                }
                 Navigator.pop(context);
               },
               child: Container(

@@ -67,10 +67,9 @@ class _MateScreenState extends State<MateScreen> {
                       ),
                     ]),
 //                ),
-                Image.network(
-                    'https://cdns.apptivo.com/site/v13.0.27/images/expense-reports-icon.png'),
+                Image.asset('images/expense_main.png'),
                 Text(
-                  'Total \$${Provider.of<MateData>(context).totalAmount()}',
+                  'Total \$ ${Provider.of<MateData>(context).totalAmount()}',
                   style: kTextTotalDecordation,
                 ),
                 SizedBox(
