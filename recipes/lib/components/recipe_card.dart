@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class RecipeCard extends StatelessWidget {
   final String foodPath;
@@ -23,9 +25,11 @@ class RecipeCard extends StatelessWidget {
               child: Image.asset('images$foodPath.jpg'),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(left: 20, top: 20, bottom: 10),
+                  padding:
+                      EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
                   child: Text(
                     foodName,
                     style: TextStyle(
@@ -34,13 +38,16 @@ class RecipeCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 200,
-                ),
-                Icon(
-                  Icons.access_alarm,
-                ),
-                Text(' $duration 분'),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.access_alarm,
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(right: 20),
+                        child: Text(' $duration 분')),
+                  ],
+                )
               ],
             ),
           ],
