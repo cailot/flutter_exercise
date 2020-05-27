@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:exchange/model/currency_data.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
   runApp(
@@ -17,8 +19,9 @@ class Exchange extends StatefulWidget {
 
 class _ExchangeState extends State<Exchange> {
   static final dateF = DateFormat('yyyy-MM-dd');
-
+  final url = 'https://api.exchangeratesapi.io/'; //2010-01-12';
   DateTime pickedDate;
+  String rate;
 
   List<CurrencyData> currencies = [
     CurrencyData(nation: 'United Kingdom', currency: 'GBP', symbol: '\u00A3'),
@@ -35,26 +38,40 @@ class _ExchangeState extends State<Exchange> {
   void initState() {
     super.initState();
     pickedDate = DateTime.now();
-    print(pickedDate);
+    getExchangeRate();
   }
 
   Future selectDate(BuildContext context) async {
     final DateTime userPick = await showDatePicker(
       context: context,
       initialDate: pickedDate,
-      firstDate: DateTime(2000),
+      firstDate: DateTime(1999),
       lastDate: pickedDate,
     );
     if (userPick != null) {
       setState(() {
         pickedDate = userPick;
+        getExchangeRate();
       });
+    }
+  }
+
+  void getExchangeRate() async {
+    var formattedDate = dateF.format(pickedDate);
+    http.Response response = await http.get(url + formattedDate + '?base=KRW');
+    print(url + formattedDate + '?base=KRW');
+    if (response.statusCode == 200) {
+      double currency = jsonDecode(response.body)['rates']['USD'];
+      setState(() {
+        rate = (currency * 1000).toStringAsFixed(2);
+      });
+    } else {
+      print(response.statusCode);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    String formattedDate = dateF.format(pickedDate);
     return Scaffold(
       appBar: AppBar(
         title: Text('환율 정보'),
@@ -74,7 +91,7 @@ class _ExchangeState extends State<Exchange> {
           Container(
             margin: EdgeInsets.symmetric(vertical: 50.0),
             child: Text(
-              'Exchange Rate at $formattedDate',
+              'Exchange Rate at ${dateF.format(pickedDate)}',
               style: Theme.of(context).textTheme.title,
             ),
           ),
@@ -97,7 +114,7 @@ class _ExchangeState extends State<Exchange> {
                           'images/${currencies[index].currency.toLowerCase()}.png',
                         ),
                       ),
-                      trailing: Text('${currencies[index].symbol} 123.45'),
+                      trailing: Text('${currencies[index].symbol} $rate'),
                     ),
                   ),
                 );
