@@ -23,33 +23,32 @@ class _MateAddState extends State<MateAdd> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
             Expanded(
-              child: Image.asset('images/add.png'),
+              child: Image.asset('images/add_pic.png'),
             ),
             Column(
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.all(30),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-//                      CircleAvatar(
-//                        child: Image.network(
-//                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRXeYAp65f4-p2qs_slDpd4q6XV8rQqzGQySEF97ZnBPsjDePOP&usqp=CAU'),
-//                      ),
-                      Icon(Icons.toc),
-                      SizedBox(
-                        width: 10,
+                      Row(
+                        children: <Widget>[
+                          Icon(Icons.toc),
+                          Text(
+                            ' Item',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Item',
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Flexible(
+                      Container(
+                        width: 250,
                         child: TextField(
                           style: TextStyle(
                             color: Colors.black,
@@ -66,25 +65,21 @@ class _MateAddState extends State<MateAdd> {
                 Padding(
                   padding: EdgeInsets.all(30),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-//                      CircleAvatar(
-//                        child: Image.network(
-//                            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtQU_pc6OrHVirqaWv8ONZdXKMNn3Gv5-ClFINuxdEmwtaKKOQ&usqp=CAU'),
-//                      ),
-                      Icon(Icons.attach_money),
-                      SizedBox(
-                        width: 10,
+                      Row(
+                        children: <Widget>[
+                          Icon(Icons.attach_money),
+                          Text(
+                            ' Price',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Price',
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Flexible(
+                      Container(
+                        width: 250,
                         child: TextField(
                           style: TextStyle(
                             color: Colors.black,
@@ -123,8 +118,8 @@ class _MateAddState extends State<MateAdd> {
                     ),
                   ),
                 ),
-                margin: EdgeInsets.only(
-                    top: 80, bottom: 100, left: 100, right: 100),
+                margin:
+                    EdgeInsets.only(top: 50, bottom: 50, left: 100, right: 100),
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.blue,

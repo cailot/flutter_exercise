@@ -11,12 +11,12 @@ const kTextTotalDecordation = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 35,
   fontFamily: 'ShyFonts',
-  color: Colors.orangeAccent,
+  color: Colors.black87,
 );
 
 const kTextFieldInputDecoration = InputDecoration(
   filled: true,
-//  fillColor: Colors.blue,
+  fillColor: Colors.white70,
   hintText: 'Item you spent',
   hintStyle: TextStyle(
     color: Colors.grey,

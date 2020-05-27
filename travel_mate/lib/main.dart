@@ -8,6 +8,9 @@ void main() => runApp(
       ChangeNotifierProvider<MateData>(
         create: (context) => MateData(),
         child: MaterialApp(
+          theme: ThemeData.light().copyWith(
+            scaffoldBackgroundColor: Color(0xFFFFF9C4),
+          ),
           initialRoute: MateScreen.id,
           routes: {
             MateScreen.id: (context) => MateScreen(),

@@ -20,7 +20,7 @@ class MateList extends StatelessWidget {
                 title: Text(
                   item.name,
                   style: TextStyle(
-                    fontFamily: 'GloriaHallelujah',
+                    fontFamily: 'ShyFonts',
                     fontSize: 20,
                   ),
                 ),
