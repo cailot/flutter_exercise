@@ -21,11 +21,13 @@ class _ExchangeState extends State<Exchange> {
   DateTime pickedDate;
 
   List<CurrencyData> currencies = [
-    CurrencyData(acronym: 'AUD', nation: 'Australia', flag: 'australia.png'),
-    CurrencyData(acronym: 'EUR', nation: 'Europe', flag: 'europe.png'),
-    CurrencyData(acronym: 'USD', nation: 'U.S.A', flag: 'usa.png'),
-    CurrencyData(acronym: 'CAD', nation: 'Canada', flag: 'canada.png'),
-    CurrencyData(acronym: 'CNY', nation: 'China', flag: 'china.png'),
+    CurrencyData(acronym: 'UK', nation: 'U.K', flag: 'gbp.png'),
+    CurrencyData(acronym: 'EUR', nation: 'Europe', flag: 'eur.png'),
+    CurrencyData(acronym: 'USD', nation: 'U.S.A', flag: 'usd.png'),
+    CurrencyData(acronym: 'CAD', nation: 'Canada', flag: 'cad.png'),
+    CurrencyData(acronym: 'INR', nation: 'India', flag: 'inr.png'),
+    CurrencyData(acronym: 'INR', nation: 'India', flag: 'aud.png'),
+    CurrencyData(acronym: 'INR', nation: 'India', flag: 'cny.png'),
   ];
 
   @override
@@ -65,10 +67,24 @@ class _ExchangeState extends State<Exchange> {
           )
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Text(formattedDate),
-        ],
+      body: ListView.builder(
+        itemCount: currencies.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.symmetric(vertical: 3, horizontal: 5),
+            child: Card(
+              child: ListTile(
+                onTap: () {},
+                title: Text(currencies[index].nation),
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage(
+                    'images/${currencies[index].flag}',
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
