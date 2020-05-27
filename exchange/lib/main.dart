@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:exchange/model/currency_data.dart';
 
 void main() {
-  runApp(Exchange());
+  runApp(
+    MaterialApp(
+      home: Exchange(),
+    ),
+  );
 }
 
 class Exchange extends StatefulWidget {
@@ -11,11 +16,27 @@ class Exchange extends StatefulWidget {
 }
 
 class _ExchangeState extends State<Exchange> {
-  DateTime pickedDate = DateTime.now();
+  static final dateF = DateFormat('yyyy-MM-dd');
+
+  DateTime pickedDate;
+
+  List<CurrencyData> currencies = [
+    CurrencyData(acronym: 'AUD', nation: 'Australia', flag: 'australia.png'),
+    CurrencyData(acronym: 'EUR', nation: 'Europe', flag: 'europe.png'),
+    CurrencyData(acronym: 'USD', nation: 'U.S.A', flag: 'usa.png'),
+    CurrencyData(acronym: 'CAD', nation: 'Canada', flag: 'canada.png'),
+    CurrencyData(acronym: 'CNY', nation: 'China', flag: 'china.png'),
+  ];
+
+  @override
+  void initState() {
+    pickedDate = DateTime.now();
+    print(pickedDate);
+  }
 
   Future selectDate(BuildContext context) async {
     final DateTime userPick = await showDatePicker(
-      context: null,
+      context: context,
       initialDate: pickedDate,
       firstDate: DateTime(1999),
       lastDate: DateTime(2021),
@@ -29,27 +50,25 @@ class _ExchangeState extends State<Exchange> {
 
   @override
   Widget build(BuildContext context) {
-    String formattedDate = DateFormat.yMd().format(pickedDate);
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Show Me Exchange Rate'),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {
-                selectDate(context);
-              },
-              icon: Icon(
-                Icons.calendar_today,
-              ),
-            )
-          ],
-        ),
-        body: Column(
-          children: <Widget>[
-            Text(formattedDate),
-          ],
-        ),
+    String formattedDate = dateF.format(pickedDate);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Show Me Exchange Rate'),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              selectDate(context);
+            },
+            icon: Icon(
+              Icons.calendar_today,
+            ),
+          )
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Text(formattedDate),
+        ],
       ),
     );
   }
