@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CurrencyData {
-  String acronym;
   String nation;
   double _rate;
-  String flag;
+  String currency;
+  String symbol;
 
-  CurrencyData({this.acronym, this.nation, this.flag});
+  CurrencyData({this.nation, this.currency, this.symbol});
 
   set rate(double exchange) {
     _rate = exchange;
