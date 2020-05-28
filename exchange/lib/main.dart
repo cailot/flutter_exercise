@@ -21,7 +21,6 @@ class _ExchangeState extends State<Exchange> {
   static final dateF = DateFormat('yyyy-MM-dd');
   final url = 'https://api.exchangeratesapi.io/'; //2010-01-12';
   DateTime pickedDate;
-  String rate;
 
   List<CurrencyData> currencies = [
     CurrencyData(nation: 'United Kingdom', currency: 'GBP', symbol: '\u00A3'),
@@ -34,6 +33,16 @@ class _ExchangeState extends State<Exchange> {
     CurrencyData(nation: 'China', currency: 'CNY', symbol: '\u5143'),
   ];
 
+  Map rates = {
+    'GBP': 0.0,
+    'EUR': 0.0,
+    'USD': 0.0,
+    'CAD': 0.0,
+    'INR': 0.0,
+    'AUD': 0.0,
+    'CNY': 0.0,
+  };
+
   @override
   void initState() {
     super.initState();
@@ -45,7 +54,7 @@ class _ExchangeState extends State<Exchange> {
     final DateTime userPick = await showDatePicker(
       context: context,
       initialDate: pickedDate,
-      firstDate: DateTime(1999),
+      firstDate: DateTime(2010),
       lastDate: pickedDate,
     );
     if (userPick != null) {
@@ -61,20 +70,30 @@ class _ExchangeState extends State<Exchange> {
     http.Response response = await http.get(url + formattedDate + '?base=KRW');
     print(url + formattedDate + '?base=KRW');
     if (response.statusCode == 200) {
-      double currency = jsonDecode(response.body)['rates']['USD'];
+//      double currency = jsonDecode(response.body)['rates']['USD'];
+      var keys = rates.keys;
+      for (String key in keys) {
+        double currency = jsonDecode(response.body)['rates'][key];
+        rates[key] = currency;
+      }
+
       setState(() {
-        rate = (currency * 1000).toStringAsFixed(2);
+        //print(rates);
       });
     } else {
       print(response.statusCode);
     }
   }
 
+  String showPretty(double price) {
+    return (price * 1000).toStringAsFixed(2);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('환율 정보'),
+        title: Text('환율 정보 (1000원 기준)'),
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -92,7 +111,10 @@ class _ExchangeState extends State<Exchange> {
             margin: EdgeInsets.symmetric(vertical: 50.0),
             child: Text(
               'Exchange Rate at ${dateF.format(pickedDate)}',
-              style: Theme.of(context).textTheme.title,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Expanded(
@@ -114,7 +136,9 @@ class _ExchangeState extends State<Exchange> {
                           'images/${currencies[index].currency.toLowerCase()}.png',
                         ),
                       ),
-                      trailing: Text('${currencies[index].symbol} $rate'),
+//                      trailing: Text('${currencies[index].symbol} $rate'),
+                      trailing: Text(
+                          '${currencies[index].symbol} ${showPretty(rates[currencies[index].currency])}'),
                     ),
                   ),
                 );
