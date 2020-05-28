@@ -55,7 +55,7 @@ class _ExchangeState extends State<Exchange> {
       context: context,
       initialDate: pickedDate,
       firstDate: DateTime(2010),
-      lastDate: pickedDate,
+      lastDate: DateTime.now(),
     );
     if (userPick != null) {
       setState(() {
@@ -108,7 +108,7 @@ class _ExchangeState extends State<Exchange> {
       body: Column(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.symmetric(vertical: 50.0),
+            margin: EdgeInsets.symmetric(vertical: 30.0),
             child: Text(
               'Exchange Rate at ${dateF.format(pickedDate)}',
               style: TextStyle(
