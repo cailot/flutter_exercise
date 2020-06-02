@@ -23,19 +23,18 @@ class _ExchangeState extends State<Exchange> {
   DateTime pickedDate;
 
   List<CurrencyData> currencies = [
-    CurrencyData(nation: 'United Kingdom', currency: 'GBP', symbol: '\u00A3'),
-    CurrencyData(nation: 'Europe', currency: 'EUR', symbol: '\u20AC'),
-    CurrencyData(
-        nation: 'United States of America', currency: 'USD', symbol: '\u0024'),
-    CurrencyData(nation: 'Canada', currency: 'CAD', symbol: '\u0024'),
-    CurrencyData(nation: 'India', currency: 'INR', symbol: '\u20B9'),
-    CurrencyData(nation: 'Australia', currency: 'AUD', symbol: '\u0024'),
-    CurrencyData(nation: 'China', currency: 'CNY', symbol: '\u5143'),
+    CurrencyData(nation: 'Europe', currency: 'EUR'),
+    CurrencyData(nation: 'United Kingdom', currency: 'GBP'),
+    CurrencyData(nation: 'United States of America', currency: 'USD'),
+    CurrencyData(nation: 'Canada', currency: 'CAD'),
+    CurrencyData(nation: 'India', currency: 'INR'),
+    CurrencyData(nation: 'Australia', currency: 'AUD'),
+    CurrencyData(nation: 'China', currency: 'CNY'),
   ];
 
   Map rates = {
-    'GBP': 0.0,
     'EUR': 0.0,
+    'GBP': 0.0,
     'USD': 0.0,
     'CAD': 0.0,
     'INR': 0.0,
@@ -74,7 +73,7 @@ class _ExchangeState extends State<Exchange> {
       var keys = rates.keys;
       for (String key in keys) {
         double currency = jsonDecode(response.body)['rates'][key];
-        rates[key] = currency;
+        rates[key] = 1 / currency;
       }
 
       setState(() {
@@ -86,14 +85,14 @@ class _ExchangeState extends State<Exchange> {
   }
 
   String showPretty(double price) {
-    return (price * 1000).toStringAsFixed(2);
+    return price.toStringAsFixed(2);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('환율 정보 (1000원 기준)'),
+        title: Text('환율 정보'),
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -137,8 +136,8 @@ class _ExchangeState extends State<Exchange> {
                         ),
                       ),
 //                      trailing: Text('${currencies[index].symbol} $rate'),
-                      trailing: Text(
-                          '${currencies[index].symbol} ${showPretty(rates[currencies[index].currency])}'),
+                      trailing:
+                          Text('${rates[currencies[index].currency].round()}'),
                     ),
                   ),
                 );
