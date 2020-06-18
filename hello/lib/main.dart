@@ -10,19 +10,19 @@ class Greeting extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
           title: Text(
-            'I am just BORN',
+            'I am just Born',
           ),
-          backgroundColor: Colors.lightBlue,
         ),
-        body: Container(
-          alignment: Alignment.center,
+        body: Center(
           child: Image(
-            image: AssetImage('images/hello.gif'),
+            image: AssetImage(
+              'images/hello.gif',
+            ),
           ),
         ),
       ),
     );
   }
 }
+stless
