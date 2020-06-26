@@ -13,6 +13,7 @@ class Greeting extends StatelessWidget {
           title: Text(
             'I am just Born',
           ),
+          centerTitle: true,
         ),
         body: Center(
           child: Image(
@@ -25,4 +26,3 @@ class Greeting extends StatelessWidget {
     );
   }
 }
-stless
