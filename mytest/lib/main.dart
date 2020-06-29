@@ -3,11 +3,20 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
-      home: Text(
-        'Hi, Jin',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 30,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Beautiful Day',
+          ),
+        ),
+        body: Center(
+          child: Text(
+            'Hi Jin',
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: 30,
+            ),
+          ),
         ),
       ),
     ),
